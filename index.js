@@ -448,7 +448,7 @@ AFRAME.registerComponent(COMPONENT_NAME, {
     let emitter = new SPE.Emitter(emitterOptions)
 
     this.particleGroup.addEmitter(emitter)
-    this.particleGroup.mesh.frustumCulled = data.frustumCulled // TODO this doesn't seem to work
+    this.particleGroup.mesh.frustumCulled = data.frustumCulled // TODO verify this
 
     // World emitters are parented to the world and we set their position each frame.
     // Local emitters are parented to the DOM entity
@@ -464,11 +464,11 @@ AFRAME.registerComponent(COMPONENT_NAME, {
   },
 
   startParticles: function() {
-    this.particleGroup.emitters.forEach(function(em) { em.enable() })
+    this.particleGroup.emitters.forEach(em => em.enable())
   },
 
   stopParticles: function() {
-    this.particleGroup.emitters.forEach(function(em) { em.disable() })
+    this.particleGroup.emitters.forEach(em => em.disable())
   },
 
   getEmitterName: function() {
