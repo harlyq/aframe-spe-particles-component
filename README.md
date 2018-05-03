@@ -1,10 +1,12 @@
 # aframe-spe-particles-component
 The spe-particles component provides a wrapper around the [Shader Particle Engine by SquareFeet](http://squarefeet.github.io/ShaderParticleEngine/), for generating GPU based particle systems in A-Frame. The system supports single textures and spritesheets, settings for position, velocity, acceleration, color, opacity, rotation, size, drag and wiggle.
 
+## [Demo](https://harlyq.github.io/aframe-spe-particles-component/)
+
 ![Screenshot](assets/screenshot.jpg)
 
 ## Example
-```
+```html
 <head>
   <script src="https://aframe.io/releases/0.8.0/aframe.min.js"></script>
   <script src="https://unpkg.com/aframe-spe-particles-component/dist/aframe-spe-particles-component.min.js"></script>

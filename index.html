@@ -12,64 +12,64 @@
         <a-mixin id="label" text="align: center; width: 10" position="0 -1.5 0"></a-mixin>
       </a-assets>
       <a-entity layout="type: box; columns: 5; margin: 5" position="-10 -5 -20">
-        <a-entity spe-particles="texture: /assets/blob.png; color: blue; velocity: 0 10 0; velocitySpread: 2 0 2; acceleration: 0 -10 0">
+        <a-entity spe-particles="texture: assets/blob.png; color: blue; velocity: 0 10 0; velocitySpread: 2 0 2; acceleration: 0 -10 0">
           <a-text value="fountain" mixin="label"></a-text>
         </a-entity>
-        <a-entity spe-particles="texture: /assets/blob.png; color: violet; positionSpread: .5; distribution: sphere; radius: 0; size: 8; randomizePosition: true; particleCount: 4; maxAge: .1">
+        <a-entity spe-particles="texture: assets/blob.png; color: violet; positionSpread: .5; distribution: sphere; radius: 0; size: 8; randomizePosition: true; particleCount: 4; maxAge: .1">
           <a-text value="flutter" mixin="label"></a-text>
         </a-entity>
-        <a-entity spe-particles="texture: /assets/blob.png; positionSpread: 1 0 0; velocity: 0 0 0; distribution: disc; radius: 2; randomizePosition: true">
+        <a-entity spe-particles="texture: assets/blob.png; positionSpread: 1 0 0; velocity: 0 0 0; distribution: disc; radius: 2; randomizePosition: true">
           <a-text value="disc" mixin="label"></a-text>
         </a-entity>
-        <a-entity spe-particles="texture: /assets/blob.png; color: blue; positionSpread: 2 0 2; radius: 0; randomizePosition: true; particleCount: 50; velocity: 0 -10 0; maxAge: .25">
+        <a-entity spe-particles="texture: assets/blob.png; color: blue; positionSpread: 2 0 2; radius: 0; randomizePosition: true; particleCount: 50; velocity: 0 -10 0; maxAge: .25">
           <a-text value="rainfall" mixin="label"></a-text>
         </a-entity>
-        <a-entity spe-particles="texture: /assets/blob.png; color: #ccc; blending: normal; positionSpread: 2 0 2; radius: 0; randomizePosition: true; particleCount: 50; velocity: 0 -.5 0; velocitySpread: .1 .2 .1; wiggleSpread: 1 0 1; maxAge: 6; emitterScale: 100">
+        <a-entity spe-particles="texture: assets/blob.png; color: #ccc; blending: normal; positionSpread: 2 0 2; radius: 0; randomizePosition: true; particleCount: 50; velocity: 0 -.5 0; velocitySpread: .1 .2 .1; wiggleSpread: 1 0 1; maxAge: 6; emitterScale: 100">
           <a-text value="snowfall" mixin="label"></a-text>
         </a-entity>
-        <a-entity spe-particles="texture: /assets/blob.png; color: yellow, red; distribution: disc; radius: .1; randomizePosition: false; particleCount: 100; velocity: 5; velocitySpread: 3; drag: 1; maxAge: .5; activeMultiplier: 1000; size: 1,.2">
+        <a-entity spe-particles="texture: assets/blob.png; color: yellow, red; distribution: disc; radius: .1; randomizePosition: false; particleCount: 100; velocity: 5; velocitySpread: 3; drag: 1; maxAge: .5; activeMultiplier: 1000; size: 1,.2">
           <a-text value="fireworks" mixin="label"></a-text>
         </a-entity>
-        <a-entity spe-particles="texture: /assets/blob.png; color: yellow, red; distribution: disc; radius: .1; randomizePosition: false; particleCount: 100; velocity: 5; velocitySpread: 3; drag: 1; maxAge: .5; activeMultiplier: 1000; size: 1,.2; direction: backward">
+        <a-entity spe-particles="texture: assets/blob.png; color: yellow, red; distribution: disc; radius: .1; randomizePosition: false; particleCount: 100; velocity: 5; velocitySpread: 3; drag: 1; maxAge: .5; activeMultiplier: 1000; size: 1,.2; direction: backward">
           <a-text value="backward fireworks" mixin="label"></a-text>
         </a-entity>
-        <a-entity spe-particles="texture: /assets/explosion_sheet.png; textureFrames: 5 5; distribution: sphere; radius: .1; particleCount: 20; maxAge: 1; size: 16; activeMultiplier: .5">
+        <a-entity spe-particles="texture: assets/explosion_sheet.png; textureFrames: 5 5; distribution: sphere; radius: .1; particleCount: 20; maxAge: 1; size: 16; activeMultiplier: .5">
           <a-text value="more frames" mixin="label"></a-text>
         </a-entity>
-        <a-entity spe-particles="texture: /assets/fog.png; positionSpread: 2 0 2; velocitySpread: .1 .05 .1; particleCount: 50; maxAge: 10; size: 6,10; opacity: 0,1,0; randomizePosition: true">
+        <a-entity spe-particles="texture: assets/fog.png; positionSpread: 2 0 2; velocitySpread: .1 .05 .1; particleCount: 50; maxAge: 10; size: 6,10; opacity: 0,1,0; randomizePosition: true">
           <a-text value="fog" mixin="label"></a-text>
         </a-entity>
-        <a-entity spe-particles="texture: /assets/fog.png; velocity: .2 1 0; velocitySpread: .2 0 .2; particleCount: 50; maxAge: 4; size: 3,8; opacity: 0,1,0; color: #aaa,#222">
+        <a-entity spe-particles="texture: assets/fog.png; velocity: .2 1 0; velocitySpread: .2 0 .2; particleCount: 50; maxAge: 4; size: 3,8; opacity: 0,1,0; color: #aaa,#222">
           <a-text value="smoke" mixin="label"></a-text>
         </a-entity>
-        <a-entity spe-particles="texture: /assets/fireworks_sheet.png; textureFrames: 5 5; particleCount: 2; maxAge: 2; size: 15">
+        <a-entity spe-particles="texture: assets/fireworks_sheet.png; textureFrames: 5 5; particleCount: 2; maxAge: 2; size: 15">
           <a-text value="frames" mixin="label"></a-text>
         </a-entity>
         <a-entity>
-          <a-entity spe-particles="texture: /assets/blob.png; particleCount: 2000; velocity: .3 0 0; maxAge: 3; distribution: disc; activeMultiplier: 10000; size: .1,.5; radius: .1, color: violet"></a-entity>
+          <a-entity spe-particles="texture: assets/blob.png; particleCount: 2000; velocity: .3 0 0; maxAge: 3; distribution: disc; activeMultiplier: 10000; size: .1,.5; radius: .1, color: violet"></a-entity>
           <a-text value="active multiplier" mixin="label"></a-text>
         </a-entity>
-        <a-entity spe-particles="texture: /assets/blob.png; particleCount: 300; velocity: .5 0 0; maxAge: 3; distribution: disc; rotationAxis: 0 0 1; rotation: 120; rotationSpread: 120; radius: .1">
+        <a-entity spe-particles="texture: assets/blob.png; particleCount: 300; velocity: .5 0 0; maxAge: 3; distribution: disc; rotationAxis: 0 0 1; rotation: 120; rotationSpread: 120; radius: .1">
           <a-text value="rotating" mixin="label"></a-text>
         </a-entity>
-        <a-entity spe-particles="texture: /assets/blob.png; particleCount: 300; maxAge: 3; distribution: sphere; color: #888; colorSpread: 1 1 1, 0 0 0; size: 0,2,0">
+        <a-entity spe-particles="texture: assets/blob.png; particleCount: 300; maxAge: 3; distribution: sphere; color: #888; colorSpread: 1 1 1, 0 0 0; size: 0,2,0">
           <a-text value="multicolor" mixin="label"></a-text>
         </a-entity>
         <a-sphere color="#040" segments-width="8" segments-height="8" radius="1" position="0 2 -5">
-          <a-entity spe-particles="texture: /assets/blob.png; color: green; particleCount: 100; maxAge: 1; distribution: sphere; velocity: .5; acceleration: -1; sizeSpread: 2; randomizeSize: true"></a-entity>
+          <a-entity spe-particles="texture: assets/blob.png; color: green; particleCount: 100; maxAge: 1; distribution: sphere; velocity: .5; acceleration: -1; sizeSpread: 2; randomizeSize: true"></a-entity>
           <a-text value="green blob" mixin="label"></a-text>
         </a-sphere>
-        <a-entity spe-particles="texture: /assets/blob.png; particleCount: 300; maxAge: 1; distribution: disc; accelerationDistribution: box; acceleration: 0 2 0; color: orange">
+        <a-entity spe-particles="texture: assets/blob.png; particleCount: 300; maxAge: 1; distribution: disc; accelerationDistribution: box; acceleration: 0 2 0; color: orange">
           <a-text value="multiple distribution" mixin="label"></a-text>
         </a-entity>
-        <a-entity spe-particles="texture: /assets/blob.png; particleCount: 50; maxAge: .5; distribution: sphere; radius: .01; velocity: 1; acceleration: 1">
+        <a-entity spe-particles="texture: assets/blob.png; particleCount: 50; maxAge: .5; distribution: sphere; radius: .01; velocity: 1; acceleration: 1">
           <a-text value="sparkler" mixin="label"></a-text>
         </a-entity>
         <a-entity>
           <a-box color="brown" scale="0.2 0.2 0.2" position="-1 0 0" animation="property: position; dur: 3000; to: 1 0 0; loop: true; easing: linear; dir: alternate" spe-particles="texture: /assets/blob.png; particleCount: 50; maxAge: 1; acceleration: 0 -2 0; relative: world"></a-box>
           <a-text value="world relative" mixin="label"></a-text>
         </a-entity>
-        <a-entity spe-particles="texture: /assets/blob.png; particleCount: 50; maxAgeSpread: 5; distribution: sphere; radius: .5; size: 5; color: blue; blending: additive">
+        <a-entity spe-particles="texture: assets/blob.png; particleCount: 50; maxAgeSpread: 5; distribution: sphere; radius: .5; size: 5; color: blue; blending: additive">
           <a-plane color="red" position="0 0 -1"></a-plane>
           <a-text value="additive blending" mixin="label"></a-text>
         </a-entity>
