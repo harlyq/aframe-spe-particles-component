@@ -1,5 +1,5 @@
 # aframe-spe-particles-component
-The spe-particles component provides a wrapper around the [Shader Particle Engine by SquareFeet](http://squarefeet.github.io/ShaderParticleEngine/), for generating sprite based particle systems using the GPU. The system supports single textures and spritesheets, settings for position, velocity, acceleration, color, opacity, rotation, size, drag and wiggle.
+The spe-particles component provides a wrapper around the [Shader Particle Engine by SquareFeet](http://squarefeet.github.io/ShaderParticleEngine/), for generating GPU based particle systems in A-Frame. The system supports single textures and spritesheets, settings for position, velocity, acceleration, color, opacity, rotation, size, drag and wiggle.
 
 ![Screenshot](assets/screenshot.jpg)
 
@@ -22,7 +22,7 @@ The spe-particles component provides a wrapper around the [Shader Particle Engin
 |accelerationSpread|spread of the particle's acceleration. for sphere and disc distributions, only the x axis is used|{x: 0, y: 0, z: 0}|vec3|
 |activeMultiplier|multiply the rate of particles emission, if larger than 1 then the particles will be emitted in bursts. note, very large numbers will emit all particles at once|1|number|
 |affectedByFog|if true, the particles are affected by THREE js fog|true|boolean|
-|alphaTest|undefined|0|number|
+|alphaTest|alpha values below the alphaTest threshold are considered invisible|0|number|
 |angle|2D rotation of the particle over the particle's lifetime, max 4 elements|'0'|array|
 |angleSpread|spread in angle over the particle's lifetime, max 4 elements|'0'|array|
 |blending|blending mode, when drawing particles|'Normal'|['No', 'Normal', 'Additive', 'Subtractive', 'Multiply', 'Custom']|

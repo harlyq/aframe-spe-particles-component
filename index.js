@@ -72,6 +72,7 @@ let schema = {
     default: 0,
     min: 0,
     max: 1,
+    description: "alpha values below the alphaTest threshold are considered invisible",
   },
   depthWrite: {
     default: false,
