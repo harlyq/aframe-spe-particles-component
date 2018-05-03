@@ -1,6 +1,6 @@
 {
   "name": "aframe-spe-particles-component",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A-frame particle system using the Shader Particle Engine from squarefeet.",
   "main": "index.js",
   "directories": {
@@ -18,7 +18,8 @@
     "aframe-component",
     "aframe-components"
   ],
-  "license": "ISC",
+  "repository": "github:harlyq/aframe-spe-particles-component",
+  "license": "MIT",
   "devDependencies": {
     "webpack": "^4.6.0",
     "webpack-cli": "^2.1.2"
