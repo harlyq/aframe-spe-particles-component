@@ -80,7 +80,7 @@ The spe-particles component provides a wrapper around the [Shader Particle Engin
 |wiggleSpread|+- spread for the wiggle attribute|0|number|
 
 ## Issues
-When using the disc or sphere distributions for velocity or acceleration, setting the radius to 0, will also disable the velocity or acceleration
+When using the disc or sphere distributions for velocity or acceleration, setting the radius to 0, will also disable the velocity and acceleration
 
 Enabling **randomizePosition** on sphere or disc distributions breaks the velocity and acceleration behavior
 
