@@ -4,7 +4,7 @@
     <script src="https://unpkg.com/aframe-animation-component/dist/aframe-animation-component.min.js"></script>
     <script src="https://unpkg.com/aframe-layout-component/dist/aframe-layout-component.min.js"></script>
     <script src="https://unpkg.com/aframe-arrow-component/index.js"></script>
-    <!--script src="https://unpkg.com/aframe-layout-component/dist/aframe-spe-particles-component.min.js"></script-->
+    <!--script src="https://unpkg.com/aframe-spe-particles-component/dist/aframe-spe-particles-component.min.js"></script-->
     <script src="dist/aframe-spe-particles-component.min.js"></script>
   </head>
   <body>
@@ -73,6 +73,13 @@
         <a-entity spe-particles="texture: assets/blob.png; particleCount: 50; maxAgeSpread: 5; distribution: sphere; radius: .5; size: 5; color: blue; blending: additive">
           <a-plane color="red" position="0 0 -1"></a-plane>
           <a-text value="additive blending" mixin="label"></a-text>
+        </a-entity>
+        <a-entity
+            spe-particles__sparks="texture: assets/square.png; color: yellow, red; particleCount: 10; maxAge: 0.5; maxAgeSpread: 0.4; velocity: 0 5 0; velocitySpread: 0 3 0; wiggle: 1 0 1; wiggleSpread: 5 0 5; emitterScale: 50; sizeSpread: .5; randomizeVelocity: true"
+            spe-particles__smoke="texture: assets/fog.png; velocity: .4 2 0; velocitySpread: 1.4 0 1.4; particleCount: 50; maxAge: 4; size: 8,16; opacity: 0,1,0; color: #666,#222"
+            spe-particles__fire="texture: assets/explosion_sheet.png; textureFrames: 5 5; velocity: .4 .1 0; acceleration: 0 2 0; accelerationSpread: 0 2 0; velocitySpread: .4 0 .4; particleCount: 15; maxAge: 1; size: 4,8; sizeSpread: 2; opacity: 1,0; wiggle: 0 1 0; blending: additive"
+            position="0 0 -10">
+          <a-text value="multiple particles" mixin="label"></a-text>
         </a-entity>
       </a-entity>
       <a-entity arrow="direction: 0 0 -1; length: 2" position="0 -10 0"></a-entity>

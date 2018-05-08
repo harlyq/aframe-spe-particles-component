@@ -1,6 +1,6 @@
 {
   "name": "aframe-spe-particles-component",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A-frame particle system using the Shader Particle Engine from squarefeet.",
   "main": "index.js",
   "directories": {

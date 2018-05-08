@@ -107,7 +107,7 @@ let schema = {
 
   // GROUP ATTRIBUTES
   texture: {
-    type: "string",
+    type: "map",
     description: "texture to be used for each particle, may be a spritesheet",
   },
   textureFrames: {
@@ -152,6 +152,7 @@ let schema = {
     default: 0,
     min: 0,
     max: 1,
+    description: "alpha values below the alphaTest threshold are considered invisible",
   },
   depthWrite: {
     default: false,
@@ -397,6 +398,8 @@ let schema = {
 
 AFRAME.registerComponent(COMPONENT_NAME, {
   schema: schema,
+  multiple: true,
+
   particleGroup: null,
   emitterID: 0,
   referenceEl: null,
@@ -443,7 +446,7 @@ AFRAME.registerComponent(COMPONENT_NAME, {
         frameCount: data.textureFrameCount !== Number.MAX_VALUE ? data.textureFrameCount : undefined,
         loop: data.textureFrameLoop,
       },
-      maxParticleCount: data.particleCount + 1, //data.maxParticleCount,
+      maxParticleCount: data.particleCount, //data.maxParticleCount,
       blending: THREE[data.blending],
       hasPerspective: data.hasPerspective,
       transparent: data.useTransparency,
@@ -528,7 +531,7 @@ AFRAME.registerComponent(COMPONENT_NAME, {
     let emitter = new SPE.Emitter(emitterOptions)
 
     this.particleGroup.addEmitter(emitter)
-    this.particleGroup.mesh.frustumCulled = data.frustumCulled // TODO this doesn't seem to work
+    this.particleGroup.mesh.frustumCulled = data.frustumCulled // TODO verify this
 
     // World emitters are parented to the world and we set their position each frame.
     // Local emitters are parented to the DOM entity
@@ -544,11 +547,11 @@ AFRAME.registerComponent(COMPONENT_NAME, {
   },
 
   startParticles: function() {
-    this.particleGroup.emitters.forEach(function(em) { em.enable() })
+    this.particleGroup.emitters.forEach(em => em.enable())
   },
 
   stopParticles: function() {
-    this.particleGroup.emitters.forEach(function(em) { em.disable() })
+    this.particleGroup.emitters.forEach(em => em.disable())
   },
 
   getEmitterName: function() {

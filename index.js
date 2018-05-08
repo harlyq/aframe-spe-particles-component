@@ -27,7 +27,7 @@ let schema = {
 
   // GROUP ATTRIBUTES
   texture: {
-    type: "string",
+    type: "map",
     description: "texture to be used for each particle, may be a spritesheet",
   },
   textureFrames: {
@@ -318,6 +318,8 @@ let schema = {
 
 AFRAME.registerComponent(COMPONENT_NAME, {
   schema: schema,
+  multiple: true,
+
   particleGroup: null,
   emitterID: 0,
   referenceEl: null,
