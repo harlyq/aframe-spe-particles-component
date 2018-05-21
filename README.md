@@ -25,27 +25,28 @@ The spe-particles component provides a wrapper around the [Shader Particle Engin
 |activeMultiplier|multiply the rate of particles emission, if larger than 1 then the particles will be emitted in bursts. note, very large numbers will emit all particles at once|1|number|
 |affectedByFog|if true, the particles are affected by THREE js fog|true|boolean|
 |alphaTest|alpha values below the alphaTest threshold are considered invisible|0|number|
-|angle|2D rotation of the particle over the particle's lifetime, max 4 elements|'0'|array|
-|angleSpread|spread in angle over the particle's lifetime, max 4 elements|'0'|array|
-|blending|blending mode, when drawing particles|'Normal'|['No', 'Normal', 'Additive', 'Subtractive', 'Multiply', 'Custom']|
+|angle|2D rotation of the particle over the particle's lifetime, max 4 elements|[0]|array|
+|angleSpread|spread in angle over the particle's lifetime, max 4 elements|[0]|array|
+|blending|blending mode, when drawing particles|'normal'|['no', 'normal', 'additive', 'subtractive', 'multiply', 'custom']|
 |color|array of colors over the particle's lifetime, max 4 elements|['#fff']|array|
-|colorSpread|spread to apply to colors, spread an array of vec3 (r g b) with 0 for no spread and 1 for max spread, note the spread will be re-applied through-out the lifetime of the particle|''|array|
+|colorSpread|spread to apply to colors, spread an array of vec3 (r g b) with 0 for no spread. note the spread will be re-applied through-out the lifetime of the particle|[]|array|
 |depthTest|if true, don't render a particle's pixels if something is closer in the depth buffer|true|boolean|
 |depthWrite|if true, particles write their depth into the depth buffer. this should be false if we use transparent particles|false|boolean|
 |direction|make the emitter operate forward or backward in time|'forward'|['forward', 'backward']|
 |distribution|distribution for particle positions, velocities and acceleration. will be overriden by specific '...Distribution' attributes|'BOX'|['BOX', 'SPHERE', 'DISC']|
 |drag|apply resistance to moving the particle, 0 is no resistance, 1 is full resistance, particle will stop moving at half of it's maxAge|0|number|
 |dragSpread|spread to apply to the drag attribute|0|number|
-|duration|duration of the emitter (seconds), if not specified then continuously emit particles.  note, if the duration is set to the 'maxAge', then particles may be emitted at the end of the duration|MAX_VALUE|number|
-|emitterScale|global scaling factor for the emitter|100|number|
+|duration|duration of the emitter (seconds), if less than 0 then continuously emit particles|-1|number|
+|emitterScale|global scaling factor for all particles from the emitter|100|number|
+|enableInEditor|enable the emitter while the editor is active (i.e. while scene is paused)|false|boolean|
 |enabled|enable/disable the emitter|true|boolean|
 |frustumCulled|enable/disable frustum culling|false|boolean|
 |hasPerspective|if true, particles will be larger the closer they are to the camera|true|boolean|
 |maxAge|maximum age of a particle before reusing|1|number|
 |maxAgeSpread|variance for the 'maxAge' attribute|0|number|
-|opacity|opacity over the particle's lifetime, max 4 elements|'1'|array|
-|opacitySpread|spread in opacity over the particle's lifetime, max 4 elements|'0'|array|
-|particleCount|maximum number of particles for this emitter|100|number|
+|opacity|opacity over the particle's lifetime, max 4 elements|[1]|array|
+|opacitySpread|spread in opacity over the particle's lifetime, max 4 elements|[0]|array|
+|particleCount|maximum number of particles for this emitter|100|int|
 |positionDistribution|distribution of particle positions, disc and sphere will use the radius attributes. For box particles emit at 0,0,0, for sphere they emit on the surface of the sphere and for disc on the edge of a 2D disc on the XY plane|'NONE'|['NONE', 'BOX', 'SPHERE', 'DISC']|
 |positionOffset|fixed offset to the apply to the emitter relative to its parent entity|{x: 0, y: 0, z: 0}|vec3|
 |positionSpread|particles are positioned within +- of these local bounds. for sphere and disc distributions only the x axis is used|{x: 0, y: 0, z: 0}|vec3|
@@ -66,11 +67,11 @@ The spe-particles component provides a wrapper around the [Shader Particle Engin
 |rotationAxisSpread|variance in the axis of rotation|{x: 0, y: 0, z: 0}|vec3|
 |rotationSpread|rotation variance in degrees|0|number|
 |rotationStatic|if true, the particles are fixed at their initial rotation value. if false, the particle will rotate from 0 to the 'rotation' value|false|boolean|
-|size|array of sizes over the particle's lifetime, max 4 elements|'1'|array|
-|sizeSpread|spread in size over the particle's lifetime, max 4 elements|'0'|array|
-|texture|texture to be used for each particle, may be a spritesheet|''|string|
-|textureFrameCount|number of frames in the spritesheet, defaults to textureFrames.x * textureFrames.y|MAX_VALUE|number|
-|textureFrameLoop|number of times the spritesheet should be looped over the lifetime of a particle|1|number|
+|size|array of sizes over the particle's lifetime, max 4 elements|[1]|array|
+|sizeSpread|spread in size over the particle's lifetime, max 4 elements|[0]|array|
+|texture|texture to be used for each particle, may be a spritesheet||map|
+|textureFrameCount|number of frames in the spritesheet, negative numbers default to textureFrames.x * textureFrames.y|-1|int|
+|textureFrameLoop|number of times the spritesheet should be looped over the lifetime of a particle|1|int|
 |textureFrames|x and y frames for a spritesheet. each particle will transition through every frame of the spritesheet over its lifetime (see textureFramesLoop)|{x: 1, y: 1}|vec2|
 |useTransparency|should the particles be rendered with transparency?|true|boolean|
 |velocity|for sphere and disc distributions, only the x axis is used|{x: 0, y: 0, z: 0}|vec3|
@@ -87,3 +88,5 @@ Enabling **randomizePosition** on sphere or disc distributions breaks the veloci
 Having an **activeMultiplier** greater than 1 provides a burst of particles, however the emitter will gradually get out of sync and emit more and more particles between each burst
 
 On Firefox when using a single particle with an infinite duration emitter, the particle may disappear
+
+If the **duration** is the same as **maxAge**, then particles may be emitted at the end of the duration
