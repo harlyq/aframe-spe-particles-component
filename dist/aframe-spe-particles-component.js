@@ -1,89 +1,9 @@
-/******/ (function(modules) { // webpackBootstrap
-/******/ 	// The module cache
-/******/ 	var installedModules = {};
-/******/
-/******/ 	// The require function
-/******/ 	function __webpack_require__(moduleId) {
-/******/
-/******/ 		// Check if module is in cache
-/******/ 		if(installedModules[moduleId]) {
-/******/ 			return installedModules[moduleId].exports;
-/******/ 		}
-/******/ 		// Create a new module (and put it into the cache)
-/******/ 		var module = installedModules[moduleId] = {
-/******/ 			i: moduleId,
-/******/ 			l: false,
-/******/ 			exports: {}
-/******/ 		};
-/******/
-/******/ 		// Execute the module function
-/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
-/******/
-/******/ 		// Flag the module as loaded
-/******/ 		module.l = true;
-/******/
-/******/ 		// Return the exports of the module
-/******/ 		return module.exports;
-/******/ 	}
-/******/
-/******/
-/******/ 	// expose the modules object (__webpack_modules__)
-/******/ 	__webpack_require__.m = modules;
-/******/
-/******/ 	// expose the module cache
-/******/ 	__webpack_require__.c = installedModules;
-/******/
-/******/ 	// define getter function for harmony exports
-/******/ 	__webpack_require__.d = function(exports, name, getter) {
-/******/ 		if(!__webpack_require__.o(exports, name)) {
-/******/ 			Object.defineProperty(exports, name, {
-/******/ 				configurable: false,
-/******/ 				enumerable: true,
-/******/ 				get: getter
-/******/ 			});
-/******/ 		}
-/******/ 	};
-/******/
-/******/ 	// define __esModule on exports
-/******/ 	__webpack_require__.r = function(exports) {
-/******/ 		Object.defineProperty(exports, '__esModule', { value: true });
-/******/ 	};
-/******/
-/******/ 	// getDefaultExport function for compatibility with non-harmony modules
-/******/ 	__webpack_require__.n = function(module) {
-/******/ 		var getter = module && module.__esModule ?
-/******/ 			function getDefault() { return module['default']; } :
-/******/ 			function getModuleExports() { return module; };
-/******/ 		__webpack_require__.d(getter, 'a', getter);
-/******/ 		return getter;
-/******/ 	};
-/******/
-/******/ 	// Object.prototype.hasOwnProperty.call
-/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
-/******/
-/******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "";
-/******/
-/******/
-/******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = "./index.js");
-/******/ })
-/************************************************************************/
-/******/ ({
-
-/***/ "./index.js":
-/*!******************!*\
-  !*** ./index.js ***!
-  \******************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+(function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
+// Copyright 2018 harlyq
+// MIT license
 
 // A-frame component for the Shader Particle Engine
-let SPE = __webpack_require__(/*! ./lib/SPE */ "./lib/SPE.js")
-let error = (cond, msg) => { if (!cond) console.error(msg) }
-
-error(AFRAME, `aframe.js not available`) // global
-error(THREE, `three.js not available`) // global
+let SPE = require("./lib/SPE.js")
 
 const toVector3 = a => new THREE.Vector3(a.x, a.y, a.z)
 const toColor = a => new THREE.Color(a)
@@ -98,7 +18,7 @@ AFRAME.registerComponent("spe-particles", {
   schema: {
     enableInEditor: {
       default: false,
-      description: "enable the emitter while the editor is active (i.e. while scene is paused)"
+      description: "enable the emitter while the editor is active (i.e. while scene is paused)",
     },
     enabled: {
       default: true,
@@ -141,7 +61,7 @@ AFRAME.registerComponent("spe-particles", {
     },
     hasPerspective: {
       default: true,
-      description: "if true, particles will be larger the closer they are to the camera",
+      description: "if true, particles will be larger the closer they are to the camera. setting this to false cancels the effect of emitterScale",
     },
     useTransparency: {
       default: true,
@@ -323,7 +243,7 @@ AFRAME.registerComponent("spe-particles", {
     },
     // rotationPivot: {
     //   default: {x: Number.MAX_VALUE, y: Number.MAX_VALUE, z: Number.MAX_VALUE, },
-    //   description: "if set rotate about this pivot, otherwise rotate about the emitter"
+    //   description: "if set rotate about this pivot, otherwise rotate about the emitter",
     // },
     randomizeRotation: {
       default: false,
@@ -397,14 +317,14 @@ AFRAME.registerComponent("spe-particles", {
   
   multiple: true,
 
-  particleGroup: null,
-  emitterID: 0,
-  referenceEl: null,
-  pauseTickId: undefined,
-
   init: function () {
+    this.particleGroup = null
+    this.referenceEl = null
+    this.pauseTickId = undefined
     this.emitterID = uniqueEmitterID++
     this.pauseTick = this.pauseTick.bind(this)
+    this.defaultTexture = new THREE.DataTexture(new Uint8Array(3).fill(255), 1, 1, THREE.RGBFormat)
+    this.defaultTexture.needsUpdate = true
   },
 
   update: function (oldData) {
@@ -475,11 +395,11 @@ AFRAME.registerComponent("spe-particles", {
   addParticleSystem: function() {
     let data = this.data
     let textureLoader = new THREE.TextureLoader()
-    let particleTexture = textureLoader.load(data.texture)
+    let particleTexture = data.texture ? textureLoader.load(data.texture) : this.defaultTexture
 
     let blending = data.blending || "No"
     blending = blending.charAt(0).toUpperCase() + blending.substring(1).toLowerCase() + "Blending"
-    error(blending in THREE, `unknown blending mode "${data.blending}"`)
+    if(!blending in THREE) console.error(`unknown blending mode "${data.blending}"`)
 
     console.assert(this.particleGroup === null)
     let groupOptions = {
@@ -624,17 +544,8 @@ function diff(a, b) {
   return delta
 }
 
-
-/***/ }),
-
-/***/ "./lib/SPE.js":
-/*!********************!*\
-  !*** ./lib/SPE.js ***!
-  \********************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/* shader-particle-engine 1.0.6
+},{"./lib/SPE.js":2}],2:[function(require,module,exports){
+/* shader-particle-engine 1.0.6
  *
  * (c) 2015 Luke Moody (http://www.github.com/squarefeet)
  *     Originally based on Lee Stemkoski's original work (https://github.com/stemkoski/stemkoski.github.com/blob/master/Three.js/js/ParticleEngine.js).
@@ -717,14 +628,12 @@ var SPE = {
 };
 
 // Module loader support:
-if ( true ) {
-    !(__WEBPACK_AMD_DEFINE_FACTORY__ = (SPE),
-				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
-				(__WEBPACK_AMD_DEFINE_FACTORY__.call(exports, __webpack_require__, exports, module)) :
-				__WEBPACK_AMD_DEFINE_FACTORY__),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+if ( typeof define === 'function' && define.amd ) {
+    define( 'spe', SPE );
 }
-else {}
+else if ( typeof exports !== 'undefined' && typeof module !== 'undefined' ) {
+    module.exports = SPE;
+}
 
 /**
  * A helper class for TypedArrays.
@@ -4180,7 +4089,4 @@ SPE.Emitter.prototype.remove = function() {
     return this;
 };
 
-
-/***/ })
-
-/******/ });
+},{}]},{},[1]);

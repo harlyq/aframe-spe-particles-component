@@ -1,9 +1,8 @@
-// A-frame component for the Shader Particle Engine
-let SPE = require("./lib/SPE")
-let error = (cond, msg) => { if (!cond) console.error(msg) }
+// Copyright 2018 harlyq
+// MIT license
 
-error(AFRAME, `aframe.js not available`) // global
-error(THREE, `three.js not available`) // global
+// A-frame component for the Shader Particle Engine
+let SPE = require("./lib/SPE.js")
 
 const toVector3 = a => new THREE.Vector3(a.x, a.y, a.z)
 const toColor = a => new THREE.Color(a)
@@ -18,7 +17,7 @@ AFRAME.registerComponent("spe-particles", {
   schema: {
     enableInEditor: {
       default: false,
-      description: "enable the emitter while the editor is active (i.e. while scene is paused)"
+      description: "enable the emitter while the editor is active (i.e. while scene is paused)",
     },
     enabled: {
       default: true,
@@ -61,7 +60,7 @@ AFRAME.registerComponent("spe-particles", {
     },
     hasPerspective: {
       default: true,
-      description: "if true, particles will be larger the closer they are to the camera",
+      description: "if true, particles will be larger the closer they are to the camera. setting this to false cancels the effect of emitterScale",
     },
     useTransparency: {
       default: true,
@@ -243,7 +242,7 @@ AFRAME.registerComponent("spe-particles", {
     },
     // rotationPivot: {
     //   default: {x: Number.MAX_VALUE, y: Number.MAX_VALUE, z: Number.MAX_VALUE, },
-    //   description: "if set rotate about this pivot, otherwise rotate about the emitter"
+    //   description: "if set rotate about this pivot, otherwise rotate about the emitter",
     // },
     randomizeRotation: {
       default: false,
@@ -317,14 +316,14 @@ AFRAME.registerComponent("spe-particles", {
   
   multiple: true,
 
-  particleGroup: null,
-  emitterID: 0,
-  referenceEl: null,
-  pauseTickId: undefined,
-
   init: function () {
+    this.particleGroup = null
+    this.referenceEl = null
+    this.pauseTickId = undefined
     this.emitterID = uniqueEmitterID++
     this.pauseTick = this.pauseTick.bind(this)
+    this.defaultTexture = new THREE.DataTexture(new Uint8Array(3).fill(255), 1, 1, THREE.RGBFormat)
+    this.defaultTexture.needsUpdate = true
   },
 
   update: function (oldData) {
@@ -395,11 +394,11 @@ AFRAME.registerComponent("spe-particles", {
   addParticleSystem: function() {
     let data = this.data
     let textureLoader = new THREE.TextureLoader()
-    let particleTexture = textureLoader.load(data.texture)
+    let particleTexture = data.texture ? textureLoader.load(data.texture) : this.defaultTexture
 
     let blending = data.blending || "No"
     blending = blending.charAt(0).toUpperCase() + blending.substring(1).toLowerCase() + "Blending"
-    error(blending in THREE, `unknown blending mode "${data.blending}"`)
+    if(!blending in THREE) console.error(`unknown blending mode "${data.blending}"`)
 
     console.assert(this.particleGroup === null)
     let groupOptions = {

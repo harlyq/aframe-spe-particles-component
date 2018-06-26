@@ -1,27 +1,28 @@
 {
   "name": "aframe-spe-particles-component",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "A-frame particle system using the Shader Particle Engine from squarefeet.",
-  "main": "index.js",
+  "files": [
+    "dist"
+  ],
   "directories": {
     "lib": "lib"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dist": "webpack --mode=development --devtool= index.js -o dist/aframe-spe-particles-component.js && webpack -p index.js -o dist/aframe-spe-particles-component.min.js"
+    "dist": "browserify index.js -o dist/aframe-spe-particles-component.js && browserify index.js | uglifyjs -c -m -o dist/aframe-spe-particles-component.min.js"
   },
   "author": "harlyq",
   "keywords": [
     "a-frame",
     "aframe",
     "aframe-vr",
-    "aframe-component",
-    "aframe-components"
+    "aframe-component"
   ],
   "repository": "github:harlyq/aframe-spe-particles-component",
   "license": "MIT",
-  "devDependencies": {
-    "webpack": "^4.6.0",
-    "webpack-cli": "^2.1.2"
-  }
+  "devDependencies": {},
+  "peerDependencies": {
+    "aframe": "^0.8.0"
+  },
+  "dependencies": {}
 }

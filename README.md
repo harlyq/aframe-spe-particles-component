@@ -9,11 +9,11 @@ The spe-particles component provides a wrapper around the [Shader Particle Engin
 ```html
 <head>
   <script src="https://aframe.io/releases/0.8.0/aframe.min.js"></script>
-  <script src="https://unpkg.com/aframe-spe-particles-component/dist/aframe-spe-particles-component.min.js"></script>
+  <script src="https://unpkg.com/aframe-spe-particles-component@^1.0.4/dist/aframe-spe-particles-component.min.js"></script>
 </head>
 
 <body>
-  <a-entity particles="texture: /assets/blob.png; color: blue; velocity: 0 10 0; velocitySpread: 2 0 2; acceleration: 0 -10 0"></a-entity>
+  <a-entity particles="texture: /assets/blob.png; color: blue; velocity: 0 10 0; velocity-spread: 2 0 2; acceleration: 0 -10 0"></a-entity>
 </body>
 ```
 ## Value
@@ -80,7 +80,7 @@ The spe-particles component provides a wrapper around the [Shader Particle Engin
 |wiggle|extra distance the particle moves over its lifetime|0|number|
 |wiggle-spread|+- spread for the wiggle attribute|0|number|
 
-## Issues
+## Limitations
 When using the disc or sphere distributions for velocity or acceleration, setting the radius to 0, will also disable the velocity and acceleration
 
 Enabling **randomizePosition** on sphere or disc distributions breaks the velocity and acceleration behavior
@@ -90,3 +90,5 @@ Having an **activeMultiplier** greater than 1 provides a burst of particles, how
 On Firefox when using a single particle with an infinite duration emitter, the particle may disappear
 
 If the **duration** is the same as **maxAge**, then particles may be emitted at the end of the duration
+
+If a **texture** is not provided then a 1x1 white texture will be used
