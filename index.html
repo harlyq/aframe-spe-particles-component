@@ -11,7 +11,7 @@
       <a-assets>
         <a-mixin id="label" text="align: center; width: 10" position="0 -1.5 0"></a-mixin>
       </a-assets>
-      <a-entity layout="type: box; columns: 5; margin: 5" position="-10 -5 -20">
+      <a-entity layout="type: box; columns: 6; margin: 5" position="-10 -5 -20">
         <a-entity spe-particles="texture: assets/blob.png; color: blue; velocity: 0 10 0; velocity-spread: 2 0 2; acceleration: 0 -10 0">
           <a-text value="fountain" mixin="label"></a-text>
         </a-entity>
@@ -31,7 +31,7 @@
           <a-text value="fireworks" mixin="label"></a-text>
         </a-entity>
         <a-entity spe-particles="texture: assets/blob.png; color: yellow, red; distribution: disc; radius: .1; randomize-position: false; particle-count: 100; velocity: 5; velocity-spread: 3; drag: 1; max-age: .5; active-multiplier: 1000; size: 1,.2; direction: backward">
-          <a-text value="backward fireworks" mixin="label"></a-text>
+          <a-text value="backwards fireworks" mixin="label"></a-text>
         </a-entity>
         <a-entity spe-particles="texture: assets/explosion_sheet.png; texture-frames: 5 5; distribution: sphere; radius: .1; particle-count: 20; max-age: 1; size: 16; active-multiplier: .5">
           <a-text value="more frames" mixin="label"></a-text>
@@ -79,6 +79,12 @@
             spe-particles__fire="texture: assets/explosion_sheet.png; texture-frames: 5 5; velocity: .4 .1 0; acceleration: 0 2 0; acceleration-spread: 0 2 0; velocity-spread: .4 0 .4; particle-count: 15; max-age: 1; size: 4,8; size-spread: 2; opacity: 1,0; wiggle: 0 1 0; blending: additive"
             position="0 0 -10">
           <a-text value="multiple particles" mixin="label"></a-text>
+        </a-entity>
+        <a-entity spe-particles="maxAge: 2; maxAgeSpread: 1; particleCount: 50; opacity: 0,1,1,0; positionSpread: 1 1 1; velocitySpread: .4 .4 .4; randomizePosition: true">
+          <a-text value="no texture" mixin="label"></a-text>
+        </a-entity>
+        <a-entity spe-particles="maxAge: 2; maxAgeSpread: 1; particleCount: 50; opacity: 0,1,1,0; positionSpread: 1 1 1; velocitySpread: .4 .4 .4; hasPerspective: false; randomizePosition: true">
+          <a-text value="no texture, no perspective" mixin="label"></a-text>
         </a-entity>
       </a-entity>
   </a-scene>
