@@ -1085,10 +1085,10 @@ SPE.ShaderAttribute.prototype.resetUpdateRange = function() {
 	this.updateMax = 0;
 };
 
-SPE.ShaderAttribute.prototype.resetDynamic = function() {
-	'use strict';
-	this.bufferAttribute.dynamic = this.dynamicBuffer;
-};
+// SPE.ShaderAttribute.prototype.resetDynamic = function() {
+// 	'use strict';
+// 	this.bufferAttribute.dynamic = this.dynamicBuffer;
+// };
 
 /**
  * Perform a splice operation on this attribute's buffer.
@@ -1111,7 +1111,7 @@ SPE.ShaderAttribute.prototype.forceUpdateAll = function() {
 	this.bufferAttribute.array = this.typedArray.array;
 	this.bufferAttribute.updateRange.offset = 0;
 	this.bufferAttribute.updateRange.count = -1;
-	this.bufferAttribute.dynamic = false;
+	// this.bufferAttribute.dynamic = false;
 	this.bufferAttribute.needsUpdate = true;
 };
 
@@ -1180,7 +1180,7 @@ SPE.ShaderAttribute.prototype._createBufferAttribute = function( size ) {
 	}
 
 	this.bufferAttribute = new THREE.BufferAttribute( this.typedArray.array, this.componentSize );
-	this.bufferAttribute.dynamic = this.dynamicBuffer;
+	// this.bufferAttribute.dynamic = this.dynamicBuffer;
 };
 
 /**
@@ -2457,7 +2457,7 @@ SPE.Group = function( options ) {
     //
     // Used when an emitter is removed.
     this._attributesNeedRefresh = false;
-    this._attributesNeedDynamicReset = false;
+    // this._attributesNeedDynamicReset = false;
 
     this.particleCount = 0;
 
@@ -2629,7 +2629,8 @@ SPE.Group.prototype._applyAttributesToGeometry = function() {
 
             // // Add the attribute to the geometry if it doesn't already exist.
             else {
-                geometry.addAttribute( attr, attribute.bufferAttribute );
+                // geometry.addAttribute( attr, attribute.bufferAttribute );
+                geometry.setAttribute( attr, attribute.bufferAttribute );
             }
 
             // Mark the attribute as needing an update the next time a frame is rendered.
@@ -3039,8 +3040,8 @@ SPE.Group.prototype.tick = function( dt ) {
     // If nothing needs updating, then stop here.
     if (
         numEmitters === 0 &&
-        this._attributesNeedRefresh === false &&
-        this._attributesNeedDynamicReset === false
+        this._attributesNeedRefresh === false // &&
+        // this._attributesNeedDynamicReset === false
     ) {
         return;
     }
@@ -3054,19 +3055,19 @@ SPE.Group.prototype.tick = function( dt ) {
         this._updateBuffers( emitter );
     }
 
-    // If the shader attributes have been refreshed,
-    // then the dynamic properties of each buffer
-    // attribute will need to be reset back to
-    // what they should be.
-    if ( this._attributesNeedDynamicReset === true ) {
-        i = this.attributeCount - 1;
+    // // If the shader attributes have been refreshed,
+    // // then the dynamic properties of each buffer
+    // // attribute will need to be reset back to
+    // // what they should be.
+    // if ( this._attributesNeedDynamicReset === true ) {
+    //     i = this.attributeCount - 1;
 
-        for ( i; i >= 0; --i ) {
-            attrs[ keys[ i ] ].resetDynamic();
-        }
+    //     for ( i; i >= 0; --i ) {
+    //         attrs[ keys[ i ] ].resetDynamic();
+    //     }
 
-        this._attributesNeedDynamicReset = false;
-    }
+    //     this._attributesNeedDynamicReset = false;
+    // }
 
     // If this group's shader attributes need a full refresh
     // then mark each attribute's buffer attribute as
@@ -3079,7 +3080,7 @@ SPE.Group.prototype.tick = function( dt ) {
         }
 
         this._attributesNeedRefresh = false;
-        this._attributesNeedDynamicReset = true;
+        // this._attributesNeedDynamicReset = true;
     }
 };
 

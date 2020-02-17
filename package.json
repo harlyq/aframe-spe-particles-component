@@ -1,6 +1,6 @@
 {
   "name": "aframe-spe-particles-component",
-  "version": "1.0.4",
+  "version": "2.0.0",
   "description": "A-frame particle system using the Shader Particle Engine from squarefeet.",
   "files": [
     "dist"
@@ -13,16 +13,19 @@
   },
   "author": "harlyq",
   "keywords": [
-    "a-frame",
     "aframe",
-    "aframe-vr",
-    "aframe-component"
+    "component",
+    "particles",
+    "particle"
   ],
   "repository": "github:harlyq/aframe-spe-particles-component",
   "license": "MIT",
-  "devDependencies": {},
+  "devDependencies": {
+    "browserify": "^16.5.0",
+    "uglifyjs": "^2.4.11"
+  },
   "peerDependencies": {
-    "aframe": "^0.8.0"
+    "aframe": "^1.0.0"
   },
   "dependencies": {}
 }

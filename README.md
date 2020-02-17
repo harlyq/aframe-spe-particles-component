@@ -8,7 +8,7 @@ The spe-particles component provides a wrapper around the [Shader Particle Engin
 ## Example
 ```html
 <head>
-  <script src="https://aframe.io/releases/0.8.0/aframe.min.js"></script>
+  <script src="https://aframe.io/releases/1.0.3/aframe.min.js"></script>
   <script src="https://unpkg.com/aframe-spe-particles-component@^1.0.4/dist/aframe-spe-particles-component.min.js"></script>
 </head>
 
