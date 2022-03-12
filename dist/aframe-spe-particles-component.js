@@ -323,7 +323,7 @@ AFRAME.registerComponent("spe-particles", {
     this.pauseTickId = undefined
     this.emitterID = uniqueEmitterID++
     this.pauseTick = this.pauseTick.bind(this)
-    this.defaultTexture = new THREE.DataTexture(new Uint8Array(3).fill(255), 1, 1, THREE.RGBFormat)
+    this.defaultTexture = new THREE.DataTexture(new Uint8Array(4).fill(255), 1, 1, THREE.RGBAFormat)
     this.defaultTexture.needsUpdate = true
   },
 
@@ -1209,7 +1209,7 @@ SPE.shaderChunks = {
     uniforms: [
         'uniform float deltaTime;',
         'uniform float runTime;',
-        'uniform sampler2D texture;',
+        'uniform sampler2D tex;',
         'uniform vec4 textureAnimation;',
         'uniform float scale;',
     ].join( '\n' ),
@@ -1450,7 +1450,7 @@ SPE.shaderChunks = {
         '    #endif',
 
         '',
-        '    vec4 rotatedTexture = texture2D( texture, vUv );',
+        '    vec4 rotatedTexture = texture2D( tex, vUv );',
     ].join( '\n' )
 };
 
@@ -2464,7 +2464,7 @@ SPE.Group = function( options ) {
 
     // Map of uniforms to be applied to the ShaderMaterial instance.
     this.uniforms = {
-        texture: {
+        tex: {
             type: 't',
             value: this.texture
         },
